@@ -52,7 +52,7 @@ class _BasicInfoStepState extends State<BasicInfoStep> {
           ),
           const SizedBox(height: 24),
           DropdownButtonFormField<String>(
-            value: _selectedGender,
+            initialValue: _selectedGender,
             decoration: const InputDecoration(labelText: 'Gender'),
             items: ['Male', 'Female', 'Non-Binary', 'Other']
                 .map((g) => DropdownMenuItem(value: g, child: Text(g)))

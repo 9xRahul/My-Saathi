@@ -10,7 +10,6 @@ class AppTheme {
         primary: Colors.deepPurple,
         secondary: Colors.pinkAccent, // Electric Pink
         surface: Color(0xFF1E1E1E),
-        background: Color(0xFF121212),
       ),
       fontFamily: 'Inter',
       inputDecorationTheme: InputDecorationTheme(

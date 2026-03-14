@@ -45,7 +45,7 @@ class _HabitsStepState extends State<HabitsStep> {
           ),
           const SizedBox(height: 32),
           DropdownButtonFormField<String>(
-            value: _smoking,
+            initialValue: _smoking,
             decoration: const InputDecoration(labelText: 'Smoking Preference'),
             items: ['Regularly', 'Occasionally', 'Never']
                 .map((s) => DropdownMenuItem(value: s, child: Text(s)))
@@ -54,7 +54,7 @@ class _HabitsStepState extends State<HabitsStep> {
           ),
           const SizedBox(height: 24),
           DropdownButtonFormField<String>(
-            value: _intent,
+            initialValue: _intent,
             decoration: const InputDecoration(labelText: 'What are you looking for?'),
             items: ['A Relationship', 'Something Casual', 'Not Sure Yet', 'Marriage']
                 .map((i) => DropdownMenuItem(value: i, child: Text(i)))

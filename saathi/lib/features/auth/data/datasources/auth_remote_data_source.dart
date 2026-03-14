@@ -105,7 +105,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     // use a custom scheme if we stored phone as email (e.g. phone@saathi.com).
     // Let's assume we map phone to email internally for password auth.
     try {
-      final fakeEmail = '\${phoneNumber.replaceAll('+', '')}@saathi.com';
+      final fakeEmail = '\${phoneNumber.replaceAll('', '')}@saathi.com';
       final userCredential = await firebaseAuth.signInWithEmailAndPassword(
         email: fakeEmail,
         password: password,

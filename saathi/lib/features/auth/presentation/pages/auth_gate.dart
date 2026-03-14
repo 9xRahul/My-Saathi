@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
 import 'welcome_screen.dart';
 import 'otp_screen.dart';
+import '../../../onboarding/presentation/pages/onboarding_wrapper.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -30,9 +30,11 @@ class AuthGate extends StatelessWidget {
         } else if (state is OtpSentState) {
           return OtpScreen(verificationId: state.verificationId);
         } else if (state is AuthenticatedState) {
-          // If profile is not complete, go to Onboarding. Else go to Home.
-          // For now, return a placeholder for OnboardingGate
-          return const Scaffold(body: Center(child: Text('Authenticated - Go to Onboarding or Home')));
+          if (!state.user.isProfileComplete) {
+            return const OnboardingWrapper();
+          } else {
+            return const Scaffold(body: Center(child: Text('Home Screen')));
+          }
         } else {
           // Unauthenticated or Initial or Error
           return const WelcomeScreen();

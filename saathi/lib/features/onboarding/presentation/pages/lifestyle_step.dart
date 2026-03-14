@@ -76,7 +76,7 @@ class _LifestyleStepState extends State<LifestyleStep> {
           ),
           const SizedBox(height: 24),
           DropdownButtonFormField<String>(
-            value: _drinking,
+            initialValue: _drinking,
             decoration: const InputDecoration(labelText: 'Drinking Preference'),
             items: ['Regularly', 'Occasionally', 'Never']
                 .map((d) => DropdownMenuItem(value: d, child: Text(d)))

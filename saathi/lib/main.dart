@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'core/di/injection.dart';
 import 'core/theme/app_theme.dart';
+import 'features/auth/presentation/pages/auth_gate.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/presentation/bloc/auth_event.dart';
 import 'features/onboarding/presentation/bloc/onboarding_bloc.dart';
@@ -44,9 +45,7 @@ class SaathiApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Saathi',
         theme: AppTheme.darkTheme,
-        home: const Scaffold(
-          body: Center(child: Text('Saathi App Initialized')),
-        ),
+        home: const AuthGate(),
       ),
     );
   }
