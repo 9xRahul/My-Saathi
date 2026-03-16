@@ -24,7 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final result = await authRepository.verifyPhone(
       phoneNumber: event.phoneNumber,
       codeSent: (verificationId) {
-        add(OtpCodeSentEvent(verificationId));
+        add(OtpCodeSentEvent(verificationId, event.phoneNumber));
       },
       verificationFailed: (failure) {
         add(OtpVerificationFailedEvent(failure.message));
@@ -37,7 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onOtpCodeSent(OtpCodeSentEvent event, Emitter<AuthState> emit) {
-    emit(OtpSentState(event.verificationId));
+    emit(OtpSentState(event.verificationId, event.phoneNumber));
   }
 
   void _onOtpVerificationFailed(OtpVerificationFailedEvent event, Emitter<AuthState> emit) {

@@ -28,7 +28,10 @@ class AuthGate extends StatelessWidget {
             ),
           );
         } else if (state is OtpSentState) {
-          return OtpScreen(verificationId: state.verificationId);
+          return OtpScreen(
+            verificationId: state.verificationId,
+            phoneNumber: state.phoneNumber,
+          );
         } else if (state is AuthenticatedState) {
           if (!state.user.isProfileComplete) {
             return const OnboardingWrapper();

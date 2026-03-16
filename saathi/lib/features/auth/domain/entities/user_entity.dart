@@ -10,7 +10,7 @@ class UserEntity extends Equatable {
   final List<String>? hobbies;
   final String? drinking;
   final String? smoking;
-  final String? intent;
+  final String? status;
   final String? bio;
   final String? profilePicUrl;
   final bool isProfileComplete;
@@ -25,7 +25,7 @@ class UserEntity extends Equatable {
     this.hobbies,
     this.drinking,
     this.smoking,
-    this.intent,
+    this.status,
     this.bio,
     this.profilePicUrl,
     this.isProfileComplete = false,
@@ -42,7 +42,7 @@ class UserEntity extends Equatable {
         hobbies,
         drinking,
         smoking,
-        intent,
+        status,
         bio,
         profilePicUrl,
         isProfileComplete,

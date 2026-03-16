@@ -27,10 +27,12 @@ class VerifyOtpEvent extends AuthEvent {
 
 class OtpCodeSentEvent extends AuthEvent {
   final String verificationId;
-  const OtpCodeSentEvent(this.verificationId);
+  final String phoneNumber;
+  
+  const OtpCodeSentEvent(this.verificationId, this.phoneNumber);
 
   @override
-  List<Object> get props => [verificationId];
+  List<Object> get props => [verificationId, phoneNumber];
 }
 
 class OtpVerificationFailedEvent extends AuthEvent {

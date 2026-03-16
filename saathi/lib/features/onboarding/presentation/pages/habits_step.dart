@@ -20,15 +20,13 @@ class _HabitsStepState extends State<HabitsStep> {
     super.initState();
     final state = context.read<OnboardingBloc>().state;
     if (state.smoking != null) _smoking = state.smoking!;
-    if (state.intent != null) _intent = state.intent!;
+    if (state.status != null) _intent = state.status!;
     if (state.bio != null) _bioController.text = state.bio!;
   }
 
   void _submit() {
-    context.read<OnboardingBloc>().add(UpdateHabitsIntentEvent(
-          smoking: _smoking,
-          intent: _intent,
-          bio: _bioController.text.trim(),
+    context.read<OnboardingBloc>().add(UpdateBioEvent(
+          _bioController.text.trim(),
         ));
   }
 

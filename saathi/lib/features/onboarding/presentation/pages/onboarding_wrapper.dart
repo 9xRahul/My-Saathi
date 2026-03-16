@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/onboarding_bloc.dart';
 import '../bloc/onboarding_state.dart';
-import 'basic_info_step.dart';
-import 'lifestyle_step.dart';
-import 'habits_step.dart';
-import 'identity_step.dart';
+import 'status_step.dart';
+import 'bio_step.dart';
+import 'phone_auth_step.dart';
+import 'upload_photos_step.dart';
 
 class OnboardingWrapper extends StatelessWidget {
   const OnboardingWrapper({super.key});
@@ -34,7 +34,7 @@ class OnboardingWrapper extends StatelessWidget {
                 LinearProgressIndicator(
                   value: state.currentStep / 4,
                   backgroundColor: Colors.white12,
-                  color: Colors.pinkAccent,
+                  color: Colors.deepOrange,
                   minHeight: 4,
                 ),
                 Expanded(
@@ -57,15 +57,15 @@ class OnboardingWrapper extends StatelessWidget {
   Widget _getStepWidget(int step) {
     switch (step) {
       case 1:
-        return const BasicInfoStep(key: ValueKey(1));
+        return const StatusStep(key: ValueKey(1));
       case 2:
-        return const LifestyleStep(key: ValueKey(2));
+        return const BioStep(key: ValueKey(2));
       case 3:
-        return const HabitsStep(key: ValueKey(3));
+        return const PhoneAuthStep(key: ValueKey(3));
       case 4:
-        return const IdentityStep(key: ValueKey(4));
+        return const UploadPhotosStep(key: ValueKey(4));
       default:
-        return const BasicInfoStep(key: ValueKey(1));
+        return const StatusStep(key: ValueKey(1));
     }
   }
 }

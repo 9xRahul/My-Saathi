@@ -42,19 +42,22 @@ class UpdateLifestyleEvent extends OnboardingEvent {
   List<Object> get props => [interests, hobbies, drinking];
 }
 
-class UpdateHabitsIntentEvent extends OnboardingEvent {
-  final String smoking;
-  final String intent;
-  final String bio;
+class UpdateStatusEvent extends OnboardingEvent {
+  final String status;
 
-  const UpdateHabitsIntentEvent({
-    required this.smoking,
-    required this.intent,
-    required this.bio,
-  });
+  const UpdateStatusEvent(this.status);
 
   @override
-  List<Object> get props => [smoking, intent, bio];
+  List<Object> get props => [status];
+}
+
+class UpdateBioEvent extends OnboardingEvent {
+  final String bio;
+
+  const UpdateBioEvent(this.bio);
+
+  @override
+  List<Object> get props => [bio];
 }
 
 class UploadProfilePictureEvent extends OnboardingEvent {

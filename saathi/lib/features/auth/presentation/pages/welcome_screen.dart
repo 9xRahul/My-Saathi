@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'phone_input_screen.dart';
 import 'password_login_screen.dart';
+import '../../../onboarding/presentation/pages/onboarding_wrapper.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -61,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                       const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => const PhoneInputScreen(isLogin: false)));
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => const OnboardingWrapper()));
                         },
                         child: const Text('Sign Up with OTP'),
                       ),

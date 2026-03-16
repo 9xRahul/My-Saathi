@@ -14,7 +14,8 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     on<PreviousStepEvent>(_onPreviousStep);
     on<UpdateBasicInfoEvent>(_onUpdateBasicInfo);
     on<UpdateLifestyleEvent>(_onUpdateLifestyle);
-    on<UpdateHabitsIntentEvent>(_onUpdateHabitsIntent);
+    on<UpdateStatusEvent>(_onUpdateStatus);
+    on<UpdateBioEvent>(_onUpdateBio);
     on<UploadProfilePictureEvent>(_onUploadProfilePicture);
     on<SubmitProfileEvent>(_onSubmitProfile);
   }
@@ -49,12 +50,13 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     add(NextStepEvent());
   }
 
-  void _onUpdateHabitsIntent(UpdateHabitsIntentEvent event, Emitter<OnboardingState> emit) {
-    emit(state.copyWith(
-      smoking: event.smoking,
-      intent: event.intent,
-      bio: event.bio,
-    ));
+  void _onUpdateStatus(UpdateStatusEvent event, Emitter<OnboardingState> emit) {
+    emit(state.copyWith(status: event.status));
+    add(NextStepEvent());
+  }
+
+  void _onUpdateBio(UpdateBioEvent event, Emitter<OnboardingState> emit) {
+    emit(state.copyWith(bio: event.bio));
     add(NextStepEvent());
   }
 
@@ -78,7 +80,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
       hobbies: state.hobbies,
       drinking: state.drinking,
       smoking: state.smoking,
-      intent: state.intent,
+      status: state.status,
       bio: state.bio,
       profilePicUrl: state.profilePicUrl,
       isProfileComplete: true,

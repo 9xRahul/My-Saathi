@@ -14,7 +14,7 @@ class OnboardingState extends Equatable {
   final String? drinking;
   // Habits & Intent
   final String? smoking;
-  final String? intent;
+  final String? status;
   final String? bio;
   // Final Identity
   final String? profilePicUrl;
@@ -31,7 +31,7 @@ class OnboardingState extends Equatable {
     this.hobbies = const [],
     this.drinking,
     this.smoking,
-    this.intent,
+    this.status,
     this.bio,
     this.profilePicUrl,
     this.isProfileComplete = false,
@@ -48,7 +48,7 @@ class OnboardingState extends Equatable {
     List<String>? hobbies,
     String? drinking,
     String? smoking,
-    String? intent,
+    String? status,
     String? bio,
     String? profilePicUrl,
     bool? isProfileComplete,
@@ -64,7 +64,7 @@ class OnboardingState extends Equatable {
       hobbies: hobbies ?? this.hobbies,
       drinking: drinking ?? this.drinking,
       smoking: smoking ?? this.smoking,
-      intent: intent ?? this.intent,
+      status: status ?? this.status,
       bio: bio ?? this.bio,
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
       isProfileComplete: isProfileComplete ?? this.isProfileComplete,
@@ -83,7 +83,7 @@ class OnboardingState extends Equatable {
         hobbies,
         drinking,
         smoking,
-        intent,
+        status,
         bio,
         profilePicUrl,
         isProfileComplete,
