@@ -86,6 +86,16 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Either<Failure, UserEntity>> loginWithPhoneBypass(String phoneNumber) async {
+    try {
+      final user = await remoteDataSource.loginWithPhoneBypass(phoneNumber);
+      return Right(user);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, void>> logout() async {
     try {
       await remoteDataSource.logout();

@@ -51,7 +51,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
             ),
             const SizedBox(height: 8),
             const Text(
-              'We will send you an OTP to verify your number.',
+              'Login or sign up with your phone number.',
               style: TextStyle(color: Colors.white70),
             ),
             const SizedBox(height: 32),
@@ -67,7 +67,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: _sendOtp,
-              child: const Text('Send OTP'),
+              child: const Text('Continue'),
             ),
           ],
         ),

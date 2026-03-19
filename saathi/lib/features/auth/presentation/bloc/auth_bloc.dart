@@ -21,18 +21,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onSendOtp(SendOtpEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
-    final result = await authRepository.verifyPhone(
-      phoneNumber: event.phoneNumber,
-      codeSent: (verificationId) {
-        add(OtpCodeSentEvent(verificationId, event.phoneNumber));
-      },
-      verificationFailed: (failure) {
-        add(OtpVerificationFailedEvent(failure.message));
-      },
-    );
+    final result = await authRepository.loginWithPhoneBypass(event.phoneNumber);
     result.fold(
       (failure) => emit(AuthError(failure.message)),
-      (_) {}, // Success is handled via codeSent callback triggering OtpCodeSentEvent
+      (user) => emit(AuthenticatedState(user)),
     );
   }
 

@@ -18,6 +18,7 @@ abstract class AuthRemoteDataSource {
     required String phoneNumber,
     required String password,
   });
+  Future<UserModel> loginWithPhoneBypass(String phoneNumber);
   Future<UserModel> getCurrentUser();
   Future<void> logout();
 }
@@ -133,6 +134,49 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       }
     }
     throw Exception('No current user');
+  }
+
+  @override
+  Future<UserModel> loginWithPhoneBypass(String phoneNumber) async {
+    final fakeEmail = '${phoneNumber.replaceAll(RegExp(r'[^0-9]'), '')}@saathi.com';
+    final password = 'DummyPassword123!';
+
+    UserCredential userCredential;
+    try {
+      userCredential = await firebaseAuth.signInWithEmailAndPassword(
+        email: fakeEmail,
+        password: password,
+      );
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        try {
+          userCredential = await firebaseAuth.createUserWithEmailAndPassword(
+            email: fakeEmail,
+            password: password,
+          );
+        } catch (createError) {
+          throw Exception('Failed to create bypass user: ${createError.toString()}');
+        }
+      } else {
+        throw Exception('Failed to login bypass user: ${e.toString()}');
+      }
+    }
+
+    final user = userCredential.user;
+    if (user != null) {
+      final doc = await firestore.collection('users').doc(user.uid).get();
+      if (!doc.exists) {
+        final newUser = UserModel(
+          id: user.uid,
+          phoneNumber: phoneNumber,
+        );
+        await firestore.collection('users').doc(user.uid).set(newUser.toJson());
+        return newUser;
+      } else {
+        return UserModel.fromJson(doc.data()!);
+      }
+    }
+    throw Exception('User is null after bypass login/creation');
   }
 
   @override

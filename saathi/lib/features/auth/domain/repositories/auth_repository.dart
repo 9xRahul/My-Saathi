@@ -23,6 +23,8 @@ abstract class AuthRepository {
     required String password,
   });
 
+  Future<Either<Failure, UserEntity>> loginWithPhoneBypass(String phoneNumber);
+
   Future<Either<Failure, UserEntity>> getCurrentUser();
   
   Future<Either<Failure, void>> logout();
